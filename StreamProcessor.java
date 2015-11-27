@@ -16,26 +16,27 @@ class StreamProcessor{
   }
 
   public int search(int v) {
-    return _search(v,storage.root).index;
+    return _search(v,storage.root,new int[5],0).index;
   }
 
 
-  private BNode _search(int v, BNode node) {
+  private int[] _search(int v, BNode node,int[] array, int pointer;) {
     System.out.println(v +  ", " +node);
     if (node!=null) {
 
       if (node.value == v) {
-        System.out.println(node + "in re");
-        return node;
+        if (pointer>=array.length) expandArray(array);
+
+        array[pointer] =  node.index;
+        pointer++;
+        return _search(v, node.left, array,pointer);
       }
 
-      if (v < node.value) return _search(v, node.left);
+      if (v < node.value) return _search(v, node.left,array,pointer);
 
-      if (v > node.value)  return _search(v, node.right);
-
-
+      if (v > node.value)  return _search(v, node.right,array,pointer);
     }
-    return null;
+
   }
 
   private int[] expandArray(int[]array) {
