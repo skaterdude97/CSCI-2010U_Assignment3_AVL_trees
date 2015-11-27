@@ -17,8 +17,9 @@ public class btSample {
     int find = 10;
     // int[] found =  processor.search(5);
     // System.out.println("5 is at " + found[0]);
-    int found =  processor.search(find);
-    System.out.println(find +" is at " + found);
+    int[] found =  processor.search(find);
+    System.out.println(found.length);
+    System.out.println(find +" is at " + found[0]);
     // found =  processor.search(55);
     // System.out.println("55 is at " + found[0]);
     // found =  processor.search(74);

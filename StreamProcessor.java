@@ -15,13 +15,12 @@ class StreamProcessor{
     index++;
   }
 
-  public int search(int v) {
-    return _search(v,storage.root,new int[5],0).index;
+  public int[] search(int v) {
+    return _search(v,storage.root,new int[5],0);
   }
 
 
-  private int[] _search(int v, BNode node,int[] array, int pointer;) {
-    System.out.println(v +  ", " +node);
+  private int[] _search(int v, BNode node,int[] array, int pointer) {
     if (node!=null) {
 
       if (node.value == v) {
@@ -29,13 +28,19 @@ class StreamProcessor{
 
         array[pointer] =  node.index;
         pointer++;
+        System.out.println("found");
         return _search(v, node.left, array,pointer);
       }
+      System.out.println(node);
 
       if (v < node.value) return _search(v, node.left,array,pointer);
 
       if (v > node.value)  return _search(v, node.right,array,pointer);
     }
+    array[pointer]=-1;
+    if (pointer==0) return trimArray(array,1);
+    return trimArray(array,pointer);
+
 
   }
 
