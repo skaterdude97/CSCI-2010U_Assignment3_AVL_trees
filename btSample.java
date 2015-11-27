@@ -13,9 +13,16 @@ public class btSample {
       processor.consume(stream.getNext());
     }
 
-    // HERE YOU WILL PERFORM SEARCHES AND COLLECT TIMES
-    // AND PREPARE THE OUTPUT
-
     processor.show();
+    int find = 10;
+    // int[] found =  processor.search(5);
+    // System.out.println("5 is at " + found[0]);
+    int found =  processor.search(find);
+    System.out.println(find +" is at " + found);
+    // found =  processor.search(55);
+    // System.out.println("55 is at " + found[0]);
+    // found =  processor.search(74);
+    // System.out.println("74 is at " + found[0]);
+
   }
 }
