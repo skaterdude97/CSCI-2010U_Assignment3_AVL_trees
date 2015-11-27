@@ -60,10 +60,25 @@ class StreamProcessor{
   }
 
   public int at(int i) {
-
-    // YOU NEED TO IMPLEMENT THIS METHOD
-
+    if (storage.root!= null) {
+      System.out.println("test");
+      BNode found = _at(i,storage.root);
+      System.out.println(found);
+      if (found!=null) return found.value;
+    }
     return -1;
+  }
+
+  private BNode _at(int i, BNode node) {
+     System.out.println(node);
+
+     if (node.left!= null) _at(i,node.left);
+     if (node.right!=null) return _at(i,node.right);
+     if (node.index==i){
+       System.out.println("return");
+       return node;
+     }
+     return node;
   }
 
   public void show() {
