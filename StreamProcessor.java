@@ -15,6 +15,11 @@ class StreamProcessor{
     index++;
   }
 
+  public void consumeAVL(int v){
+    storage.insertAVL(v, index);
+    index++;
+  }
+
   public int[] search(int v) {
     return _search(v,storage.root,new int[5],0);
   }
@@ -28,10 +33,10 @@ class StreamProcessor{
 
         array[pointer] =  node.index;
         pointer++;
-        System.out.println("found");
+        ////System.out.println("found");
         return _search(v, node.left, array,pointer);
       }
-      System.out.println(node);
+      //System.out.println(node);
 
       if (v < node.value) return _search(v, node.left,array,pointer);
 
@@ -61,24 +66,33 @@ class StreamProcessor{
 
   public int at(int i) {
     if (storage.root!= null) {
-      System.out.println("test");
-      BNode found = _at(i,storage.root);
-      System.out.println(found);
-      if (found!=null) return found.value;
+      BNode node = storage.root;
+      while (node.right!=null){
+        while (node.left!=null) {
+          System.out.println(node);
+          if (node.index == i) return node.value;
+          node = node.left;
+        }
+        node = node.right;
+      }
+
     }
     return -1;
   }
 
   private BNode _at(int i, BNode node) {
-     System.out.println(node);
 
      if (node.left!= null) _at(i,node.left);
+
      if (node.right!=null) return _at(i,node.right);
      if (node.index==i){
-       System.out.println("return");
+       //System.out.println("return");
        return node;
-     }
-     return node;
+     }else return null;
+  }
+
+  public String graph() {
+    return storage.printGraphViz();
   }
 
   public void show() {

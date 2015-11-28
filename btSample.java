@@ -5,13 +5,19 @@ public class btSample {
     int streamLength = 10;
     int seed = 0;
 
-    Stream stream = new Stream(integerRange, 0);  // 100 is the range of integers
+    Stream stream = new Stream(integerRange, seed);  // 100 is the range of integers
     StreamProcessor processor = new StreamProcessor();
 
 
     for (int i=0; i<streamLength; ++i) {
-      processor.consume(stream.getNext());
+      processor.consumeAVL(stream.getNext());
     }
+
+    System.out.print(processor.graph());
+    System.out.println();
+
+
+
 
     processor.show();
     int find = Integer.parseInt(args[0]);

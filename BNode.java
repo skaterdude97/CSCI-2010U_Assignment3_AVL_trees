@@ -15,7 +15,7 @@ class BNode {
   }
 
   public String toString() {
-    String s = "value = " + this.value + " index = " + this.index;
+    String s = "value = " + this.value + " index = " + this.index ;
     if (isLeaf()) {
       s += " (Leaf)";
     }
