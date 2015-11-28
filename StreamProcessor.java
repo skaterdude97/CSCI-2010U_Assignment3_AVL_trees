@@ -65,30 +65,25 @@ class StreamProcessor{
   }
 
   public int at(int i) {
+    BNode found = null;
     if (storage.root!= null) {
-      BNode node = storage.root;
-      while (node.right!=null){
-        while (node.left!=null) {
-          System.out.println(node);
-          if (node.index == i) return node.value;
-          node = node.left;
-        }
-        node = node.right;
-      }
-
+      found = _at(i, storage.root);
     }
+    if (found!=null) return found.value;
     return -1;
   }
 
   private BNode _at(int i, BNode node) {
+    if (node.index==i) return node;
 
-     if (node.left!= null) _at(i,node.left);
+    BNode search = null;
 
-     if (node.right!=null) return _at(i,node.right);
-     if (node.index==i){
-       //System.out.println("return");
-       return node;
-     }else return null;
+    if (node.left!=null) search = node.left;
+    if (search!=null) return search;
+    if (node.right!=null) search = node.right;
+    if (search!=null) return search;
+
+    return null;
   }
 
   public String graph() {
